@@ -30,17 +30,17 @@
         android:paddingLeft="10dp" />
 
     <EditText
-        android:id="@+id/et_tckNo"
+        android:id="@+id/et_number"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"
-        android:inputType="number"
-        android:maxLength="11"
-        android:maxLines="1"
         android:layout_marginRight="40dp"
         android:background="@drawable/et_bg"
         android:hint="T.C."
+        android:inputType="number"
+        android:maxLength="11"
+        android:maxLines="1"
         android:paddingLeft="10dp" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -57,14 +57,15 @@
         android:textColor="@color/white" />
 
     <EditText
-        android:id="@+id/et_search_tckNo"
+        android:id="@+id/et_search_number"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"
+        android:maxLength="11"
         android:layout_marginRight="40dp"
         android:background="@drawable/et_bg"
-        android:hint="Aramak istediğiniz T.C."
+        android:hint="Search T.C."
         android:paddingLeft="10dp" />
 
     <androidx.appcompat.widget.AppCompatButton

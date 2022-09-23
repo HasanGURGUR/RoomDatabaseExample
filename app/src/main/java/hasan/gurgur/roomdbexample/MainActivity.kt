@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
 
         watchEdittext()
         binding.btnSave.setOnClickListener {
-
-
             saveData()
         }
         binding.btnSearch.setOnClickListener {
@@ -38,20 +36,20 @@ class MainActivity : AppCompatActivity() {
 
         val firstName = binding.etFirstName.text.toString()
         val lastName = binding.etLastName.text.toString()
-        val tckNo = binding.etTckNo.text.toString()
+        val lineNo = binding.etNumber.text.toString()
 
-        if (firstName.isNotEmpty() && lastName.isNotEmpty() && tckNo.isNotEmpty()) {
+        if (firstName.isNotEmpty() && lastName.isNotEmpty() && lineNo.isNotEmpty()) {
 
 
             val user = User(
-                null, firstName, lastName, tckNo.toLong()
+                null, firstName, lastName, lineNo.toLong()
             )
             GlobalScope.launch(Dispatchers.IO) {
                 appDb.userDao().insert(user)
             }
             binding.etFirstName.text.clear()
             binding.etLastName.text.clear()
-            binding.etTckNo.text.clear()
+            binding.etNumber.text.clear()
 
             Toast.makeText(this, "Successfully saved", Toast.LENGTH_SHORT).show()
         } else {
@@ -66,25 +64,24 @@ class MainActivity : AppCompatActivity() {
         withContext(Dispatchers.Main) {
             binding.tvSonucFirstname.text = user.fistName
             binding.tvSonucLastname.text = user.lastName
-            binding.tvSonucTckn.text = user.tcknNo.toString()
+            binding.tvSonucTckn.text = user.lineNumber.toString()
         }
-
     }
 
     private fun searchData() {
 
-        val tcknNo = binding.etSearchTckNo.text.toString()
-        if (tcknNo.isNotEmpty()) {
+        val number = binding.etSearchNumber.text.toString()
+        if (number.isNotEmpty()) {
             lateinit var user: User
             GlobalScope.launch {
-                user = appDb.userDao().findByRoll(tcknNo.toInt())
+                user = appDb.userDao().findByRoll(number.toLong())
                 displayData(user = user)
             }
         }
     }
 
     private fun checkEtx(){
-        if (binding.etFirstName.text.isNotEmpty() && binding.etLastName.text.isNotEmpty() && binding.etTckNo.text.isNotEmpty()) {
+        if (binding.etFirstName.text.isNotEmpty() && binding.etLastName.text.isNotEmpty() && binding.etNumber.text.isNotEmpty()) {
             binding.btnSave.alpha = 1f
             binding.btnSave.isEnabled = true
         }else{
@@ -120,7 +117,7 @@ class MainActivity : AppCompatActivity() {
 
             }
         })
-        binding.etTckNo.addTextChangedListener(object : TextWatcher{
+        binding.etNumber.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
